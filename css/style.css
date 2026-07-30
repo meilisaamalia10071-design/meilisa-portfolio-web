@@ -1,0 +1,238 @@
+/* ======================================================================
+   BAB 2 — STYLE UTAMA WEB PUBLIK (index.html)
+   Diorganisir per-bagian: Umum > Navbar > Hero > About > Skills >
+   Experience > Projects > Contact > Footer > Responsive
+   ====================================================================== */
+
+/* ---------- 2.1 RESET & DASAR ---------- */
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+html{background-color:var(--bg); transition:background-color .25s ease;}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* --- 2.1.1 Blob latar belakang melayang (animasi tipis) --- */
+body::before, body::after{
+  content:"";
+  position:fixed;
+  border-radius:50%;
+  filter:blur(90px);
+  z-index:-1;
+  pointer-events:none;
+  opacity:.28;
+}
+body::before{
+  width:520px; height:520px; top:-180px; left:-140px;
+  background:var(--accent);
+  animation:blobFloat1 24s ease-in-out infinite;
+}
+body::after{
+  width:600px; height:600px; top:8%; right:-220px;
+  background:var(--accent-2);
+  animation:blobFloat2 28s ease-in-out infinite;
+}
+html.dark-mode body::before, html.dark-mode body::after{opacity:.16;}
+@keyframes blobFloat1{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(60px,90px) scale(1.08);}
+}
+@keyframes blobFloat2{
+  0%,100%{transform:translate(0,0) scale(1);}
+  50%{transform:translate(-70px,60px) scale(1.05);}
+}
+@media (prefers-reduced-motion: reduce){
+  body::before, body::after{animation:none;}
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit; cursor:pointer;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+.mono{font-family:var(--font-mono);}
+h1,h2,h3{font-family:var(--font-display); letter-spacing:-0.01em;}
+section{padding:96px 0;}
+
+/* --- 2.1.2 Animasi muncul saat section di-scroll ke layar --- */
+.reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1; transform:none; transition:none;}
+}
+
+/* label kecil bergaya "kode komponen" skematik (U1, R1, C1...) */
+.designator{
+  font-family:var(--font-mono); font-size:12.5px; font-weight:500;
+  letter-spacing:.12em; color:var(--accent-ink);
+  background:var(--accent-soft); border:1px solid #f2ddb8;
+  padding:4px 10px; border-radius:100px;
+  display:inline-flex; align-items:center; gap:6px;
+}
+.designator::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block;}
+
+.section-head{margin-bottom:48px; max-width:640px;}
+.section-head h2{font-size:clamp(28px,3.4vw,38px); font-weight:600; margin-top:14px;}
+.section-head p{color:var(--ink-soft); margin-top:12px; font-size:15.5px;}
+
+/* ---------- 2.2 NAVBAR ---------- */
+header{position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--line);}
+nav.wrap{display:flex; align-items:center; justify-content:space-between; min-height:72px; padding-top:12px; padding-bottom:12px;}
+.brand-col{display:flex; flex-direction:column; align-items:flex-start; gap:8px;}
+.logo{font-family:var(--font-display); font-weight:700; font-size:19px; display:flex; align-items:center; gap:8px;}
+.logo .chip-dot{width:9px; height:9px; border-radius:2px; background:var(--accent-2); box-shadow:0 0 0 3px var(--accent-2-soft);}
+.nav-links{display:flex; gap:32px; align-items:center;}
+.nav-links a{font-size:14.5px; color:var(--ink-soft); font-weight:500; transition:color .15s ease;}
+.nav-links a:hover{color:var(--ink);}
+.nav-toggle{display:none; background:none; border:none; font-size:22px; color:var(--ink);}
+
+/* --- 2.2.1 Tombol toggle mode gelap/terang --- */
+.theme-toggle{
+  position:fixed;
+  right:22px; bottom:22px;
+  z-index:200;
+  width:44px; height:44px; border-radius:12px;
+  border:1px solid var(--line); background:var(--surface);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ink);
+  box-shadow:0 8px 24px rgba(16,28,40,.15);
+  transition:background .2s ease, border-color .2s ease;
+}
+.theme-toggle svg{width:20px; height:20px;}
+.theme-toggle:hover{border-color:var(--ink);}
+
+/* transisi halus saat pindah tema */
+body{transition:background-color .25s ease, color .25s ease;}
+.proj-card, .skill-card, .contact-card, header, .spec-table, .tag, footer{
+  transition:background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+
+/* ---------- 2.3 HERO ---------- */
+.hero{padding:88px 0 100px; position:relative; overflow:hidden;}
+.hero .wrap{display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;}
+.status-pill{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:500; color:#2c7a4b; background:#eafaf0; border:1px solid #cdeedb; padding:6px 12px; border-radius:100px; margin-bottom:24px;}
+.status-pill::before{content:""; width:7px; height:7px; border-radius:50%; background:#2c7a4b; box-shadow:0 0 0 3px #cdeedb;}
+.hero h1{font-size:clamp(34px,5vw,54px); font-weight:700; line-height:1.05;}
+.hero .title-line{margin-top:18px; font-size:16px; font-weight:500; color:var(--accent-2); font-family:var(--font-mono); min-height:24px;}
+.hero .title-line .cursor{display:inline-block; width:2px; margin-left:2px; background:var(--accent-2); animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+@media (prefers-reduced-motion: reduce){.hero .title-line .cursor{animation:none;}}
+.hero p.desc{margin-top:20px; max-width:520px; color:var(--ink-soft); font-size:16px;}
+.hero .cta-row{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+.btn{padding:12px 22px; border-radius:8px; font-size:14.5px; font-weight:600; display:inline-flex; align-items:center; gap:8px; border:1px solid transparent; transition:transform .12s ease, box-shadow .12s ease;}
+.btn:hover{transform:translateY(-1px);}
+.btn-primary{background:var(--btn-bg); color:#fff;}
+.btn-primary:hover{box-shadow:0 8px 20px rgba(16,28,40,.18);}
+.btn-ghost{background:var(--surface); color:var(--ink); border-color:var(--line);}
+.btn-ghost:hover{border-color:var(--ink);}
+
+/* --- 2.3.1 Ikon sosial media (logo saja, tanpa teks) --- */
+.social-row{display:flex; gap:14px; margin-top:36px;}
+.social-row a{
+  width:38px; height:38px; border-radius:50%; border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ink-soft); transition:.15s ease;
+}
+.social-row a svg{width:18px; height:18px; fill:currentColor;}
+.social-row a:hover{border-color:var(--ink); color:var(--ink);}
+
+/* --- 2.3.2 Ilustrasi chip IC di hero --- */
+.chip-wrap{display:flex; justify-content:center; align-items:center;}
+.chip-wrap svg{width:100%; max-width:340px; height:auto;}
+.trace{stroke-dasharray:300; stroke-dashoffset:300; animation:draw 1.6s ease forwards;}
+.trace2{stroke-dasharray:300; stroke-dashoffset:300; animation:draw 1.6s ease .2s forwards;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@media (prefers-reduced-motion: reduce){.trace,.trace2{animation:none; stroke-dashoffset:0;}}
+
+/* ---------- 2.4 ABOUT ---------- */
+.about-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:56px;}
+.about-grid.stacked{grid-template-columns:1fr;}
+.about-text p{color:var(--ink-soft); font-size:16px; max-width:560px;}
+.spec-table{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+.spec-row{display:flex; justify-content:space-between; gap:16px; padding:14px 20px; border-bottom:1px solid var(--line); font-size:14px;}
+.spec-row:last-child{border-bottom:none;}
+.spec-row .k{color:var(--ink-faint); font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase;}
+.spec-row .v{color:var(--ink); font-weight:500; text-align:right;}
+
+/* ---------- 2.5 SKILLS ---------- */
+.skills-groups{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+.skill-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px;}
+.skill-card h3{font-size:15px; font-weight:600; margin-bottom:16px; display:flex; align-items:center; gap:8px;}
+.skill-card h3 .dot{width:8px; height:8px; border-radius:2px; background:var(--accent-2);}
+.tag-row{display:flex; flex-wrap:wrap; gap:10px;}
+.tag{font-family:var(--font-mono); font-size:13px; background:var(--surface); color:var(--ink); border:1px solid var(--line); padding:8px 14px; border-radius:8px;}
+.tag-featured{background:var(--accent-soft); border-color:#f2ddb8; color:var(--accent-ink); font-weight:600;}
+.tag-badge{font-size:10.5px; font-weight:700; margin-left:4px; opacity:.85;}
+/* ---------- 2.6 EXPERIENCE ---------- */
+.timeline{position:relative; padding-left:28px;}
+.timeline::before{content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px; background:var(--line);}
+.tl-item{position:relative; padding-bottom:40px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:""; position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:#fff; border:2px solid var(--accent-2);}
+.tl-year{font-family:var(--font-mono); font-size:13px; color:var(--accent-2); font-weight:500; margin-bottom:6px;}
+.tl-item h3{font-size:18px; font-weight:600; margin-bottom:6px;}
+.tl-item p{color:var(--ink-soft); font-size:15px; max-width:560px;}
+.tl-badge{display:inline-block; margin-top:10px; font-size:12.5px; background:var(--accent-soft); color:var(--accent-ink); border:1px solid #f2ddb8; padding:4px 10px; border-radius:100px; font-family:var(--font-mono);}
+
+/* ---------- 2.7 PROJECTS ---------- */
+.projects-toolbar{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:28px; flex-wrap:wrap;}
+.proj-grid{display:grid; grid-template-columns:repeat(var(--project-columns),1fr); gap:22px;}
+.proj-card{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--bg); color:var(--ink); transition:box-shadow .15s ease, transform .15s ease, background-color .25s ease;}
+.proj-card:hover{box-shadow:var(--shadow); transform:translateY(-2px);}
+.proj-thumb{aspect-ratio:4/3; background:var(--surface); display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid var(--line);}
+.proj-thumb img{width:100%; height:100%; object-fit:cover;}
+.proj-thumb .placeholder{color:var(--ink-faint); font-size:13px; font-family:var(--font-mono); text-align:center; padding:0 16px;}
+.proj-body{padding:18px 18px 20px;}
+.proj-body h3{font-size:16.5px; font-weight:600; margin-bottom:8px;}
+.proj-body p{font-size:14px; color:var(--ink-soft); margin-bottom:12px;}
+.proj-tags{display:flex; flex-wrap:wrap; gap:6px;}
+.proj-tags span{font-size:11.5px; font-family:var(--font-mono); background:var(--accent-2-soft); color:var(--accent-2); padding:3px 8px; border-radius:6px;}
+
+/* ---------- 2.8 CONTACT ---------- */
+.contact-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+.contact-card{border:1px solid var(--line); border-radius:var(--radius); padding:22px; background:var(--surface);}
+.contact-card .k{font-family:var(--font-mono); font-size:12px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px;}
+.contact-card .v{font-size:15.5px; font-weight:600;}
+.contact-card a.v:hover{color:var(--accent-2);}
+
+/* ---------- 2.9 FOOTER ---------- */
+footer{border-top:1px solid var(--line); padding:44px 0;}
+footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+footer .f-brand{font-family:var(--font-display); font-weight:700; font-size:17px;}
+footer .f-tag{color:var(--ink-faint); font-size:13px; margin-top:4px;}
+footer .f-copy{color:var(--ink-faint); font-size:13px;}
+footer .f-social{display:flex; gap:12px;}
+footer .f-social a{color:var(--ink-faint);}
+footer .f-social a svg{width:16px; height:16px; fill:currentColor;}
+footer .f-social a:hover{color:var(--ink);}
+
+/* ---------- 2.10 RESPONSIVE ---------- */
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;}
+  .chip-wrap{order:-1; max-width:220px; margin:0 auto 12px;}
+  .chip-wrap svg{max-width:200px;}
+}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+@media(max-width:760px){
+  .nav-links{position:absolute; top:72px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); flex-direction:column; align-items:flex-start; gap:0; padding:8px 24px 20px; display:none;}
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:12px 0; width:100%; border-bottom:1px solid var(--surface-2);}
+  .nav-toggle{display:block;}
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media(max-width:700px){.skills-groups{grid-template-columns:1fr;}}
+@media(max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:620px){.proj-grid{grid-template-columns:1fr;}}
+
+/* focus visibility (aksesibilitas) */
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent-2); outline-offset:2px;}
