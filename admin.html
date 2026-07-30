@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Portfolio Meilisa</title>
+<meta name="robots" content="noindex, nofollow">
+<!-- BAB A — FILE CSS -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ================= GERBANG AKSES ================= -->
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <h1>🔒 Mode Edit</h1>
+    <p class="sub">Halaman ini khusus buat kamu. Masukkan password dan token GitHub untuk masuk.</p>
+
+    <div class="field">
+      <label for="gatePassword">Password</label>
+      <input type="password" id="gatePassword" placeholder="Masukkan password">
+    </div>
+    <div class="field">
+      <label for="gateToken">GitHub Personal Access Token</label>
+      <input type="password" id="gateToken" placeholder="ghp_xxxxxxxxxxxx">
+      <div class="hint">Token disimpan hanya di browser device ini, tidak pernah dikirim ke mana pun selain GitHub. Lihat README.md untuk cara membuatnya.</div>
+    </div>
+    <button class="btn btn-primary btn-block" id="gateEnter">Masuk</button>
+    <p id="gateError" style="color:#c33; font-size:13px; margin-top:12px;"></p>
+  </div>
+</div>
+
+<!-- ================= DASHBOARD ================= -->
+<div class="dash" id="dash">
+  <div class="side">
+    <h2>Editor Meilisa</h2>
+    <button class="tab active" data-tab="hero">Hero</button>
+    <button class="tab" data-tab="about">About</button>
+    <button class="tab" data-tab="skills">Skills</button>
+    <button class="tab" data-tab="experience">Experience</button>
+    <button class="tab" data-tab="projects">Projects</button>
+    <button class="tab" data-tab="contact">Contact</button>
+    <button class="tab" data-tab="appearance">Tampilan</button>
+    <button class="logout" id="logoutBtn">Keluar</button>
+  </div>
+
+  <div>
+    <div class="main-panel">
+
+      <!-- ===== PANEL: HERO ===== -->
+      <div class="panel active" id="panel-hero">
+        <h2>Bab 1 — Hero</h2>
+        <p class="desc">Bagian paling atas halaman utama.</p>
+        <div class="field"><label>Nama</label><input type="text" id="hName"></div>
+        <div class="field"><label>Title / Tagline</label><input type="text" id="hTitle"></div>
+        <div class="field"><label>Deskripsi singkat</label><textarea id="hDesc"></textarea></div>
+        <div class="field"><label>Link CV (Google Drive / PDF)</label><input type="text" id="hCV"></div>
+        <fieldset>
+          <legend>Media Sosial (isi link lengkap, kosongkan jika tidak dipakai)</legend>
+          <div class="field"><label>GitHub</label><input type="text" id="hSocial_github"></div>
+          <div class="field"><label>Instagram</label><input type="text" id="hSocial_instagram"></div>
+          <div class="field"><label>Facebook</label><input type="text" id="hSocial_facebook"></div>
+          <div class="field"><label>X (Twitter)</label><input type="text" id="hSocial_x"></div>
+          <div class="field"><label>YouTube</label><input type="text" id="hSocial_youtube"></div>
+          <div class="field"><label>LinkedIn</label><input type="text" id="hSocial_linkedin"></div>
+        </fieldset>
+      </div>
+
+      <!-- ===== PANEL: ABOUT ===== -->
+      <div class="panel" id="panel-about">
+        <h2>Bab 2 — About</h2>
+        <p class="desc">Bio singkat dan tabel info diri.</p>
+        <div class="field"><label>Bio</label><textarea id="aBio"></textarea></div>
+        <fieldset>
+          <legend>Tabel Info</legend>
+          <div id="aSpecsWrap"></div>
+        </fieldset>
+      </div>
+
+      <!-- ===== PANEL: SKILLS ===== -->
+      <div class="panel" id="panel-skills">
+        <h2>Bab 3 — Skills</h2>
+        <p class="desc">Kelompok keahlian dan tools yang kamu kuasai.</p>
+        <div id="skillsWrap"></div>
+      </div>
+
+      <!-- ===== PANEL: EXPERIENCE ===== -->
+      <div class="panel" id="panel-experience">
+        <h2>Bab 4 — Experience</h2>
+        <p class="desc">Timeline pengalaman dan pendidikan.</p>
+        <div id="expWrap"></div>
+      </div>
+
+      <!-- ===== PANEL: PROJECTS ===== -->
+      <div class="panel" id="panel-projects">
+        <h2>Bab 5 — Projects</h2>
+        <p class="desc">Tambah, ubah, atau hapus karya yang tampil di web publik.</p>
+        <button class="btn btn-ghost" id="addProjectBtn" style="margin-bottom:18px;">+ Tambah Karya</button>
+        <div class="admin-proj-list" id="projList"></div>
+      </div>
+
+      <!-- ===== PANEL: CONTACT ===== -->
+      <div class="panel" id="panel-contact">
+        <h2>Bab 6 — Contact</h2>
+        <p class="desc">Info kontak yang tampil di section terakhir.</p>
+        <div class="field"><label>Email</label><input type="text" id="cEmail"></div>
+        <div class="field"><label>WhatsApp (format: 62812xxxxxxx, tanpa +)</label><input type="text" id="cWA"></div>
+        <div class="field"><label>Instagram (username saja)</label><input type="text" id="cIG"></div>
+      </div>
+
+      <!-- ===== PANEL: TAMPILAN ===== -->
+      <div class="panel" id="panel-appearance">
+        <h2>Bab 7 — Tampilan</h2>
+        <p class="desc">Ganti font, warna latar, dan susunan tanpa sentuh kode.</p>
+        <fieldset>
+          <legend>Font</legend>
+          <div class="swatch-row" id="fontSwatches"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Latar Belakang</legend>
+          <div class="swatch-row" id="bgSwatches"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Susunan</legend>
+          <div class="field">
+            <label>Jumlah kolom grid Projects</label>
+            <select id="projColumns"><option value="2">2 kolom</option><option value="3">3 kolom</option></select>
+          </div>
+          <div class="field">
+            <label>Layout section About</label>
+            <select id="aboutLayout"><option value="side-by-side">Berdampingan</option><option value="stacked">Bertumpuk</option></select>
+          </div>
+        </fieldset>
+      </div>
+
+    </div>
+
+    <!-- ================= PUBLISH BAR ================= -->
+    <div class="publish-bar">
+      <span class="status-msg" id="statusMsg">Perubahan disimpan ke browser dulu — klik Publish untuk mengirim ke web publik.</span>
+      <button class="btn btn-primary" id="publishBtn">Simpan &amp; Publish</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL: TAMBAH/EDIT PROJECT ================= -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal">
+    <h3 id="modalTitleText">Tambah Karya</h3>
+    <div class="field"><label>Judul Project</label><input type="text" id="pfTitle"></div>
+    <div class="field"><label>Tools / Tags (pisahkan dengan koma)</label><input type="text" id="pfTags"></div>
+    <div class="field"><label>Deskripsi Singkat</label><textarea id="pfDesc"></textarea></div>
+    <div class="field">
+      <label>Foto Project</label>
+      <input type="file" id="pfImage" accept="image/*">
+      <div class="hint">Opsional — foto disimpan langsung sebagai bagian dari data project.</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="pfCancel">Batal</button>
+      <button class="btn btn-primary" id="pfSave">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- BAB B — FILE JAVASCRIPT -->
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
