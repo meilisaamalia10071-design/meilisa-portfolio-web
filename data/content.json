@@ -1,0 +1,56 @@
+{
+  "hero": {
+    "brand": "meilisaamalia",
+    "name": "Meilisa Amalia Susanto",
+    "titles": ["Electronic Engineering", "3D Design Specialist (Onshape)", "Membuka Jasa Design Teknik"],
+    "description": "Mahasiswa D4 Teknik Elektronika di Politeknik Negeri Malang yang membuka jasa design teknik, terutama menggunakan Onshape, dari konsep hingga model 3D siap produksi untuk kebutuhan mekanik dan robotik.",
+    "socials": {
+      "github": "#",
+      "instagram": "#",
+      "facebook": "#",
+      "x": "#",
+      "youtube": "#",
+      "linkedin": "#"
+    }
+  },
+  "about": {
+    "bio": "Halo! Aku Meii, mahasiswa D4 Teknik Elektronika di Politeknik Negeri Malang, yang memiliki minat dalam bidang mekanik, mendesain rancangan teknik 3D menggunakan Onshape, mulai dari komponen sederhana sampai rangkaian mekanisme robot. Serta dalam bidang elektrik untuk mendukung project-project robotik dan IoT.",
+    "specs": [
+      { "k": "Name", "v": "Meilisa Amalia Susanto" },
+      { "k": "Program", "v": "D4 Teknik Elektronika" },
+      { "k": "Institution", "v": "Politeknik Negeri Malang" },
+      { "k": "Batch", "v": "2025" },
+      { "k": "Status", "v": "Student" },
+      { "k": "Community", "v": "EEPROM Robotics" }
+    ]
+  },
+  "skills": [
+    {
+      "group": "Design & 3D Modeling — Keahlian Utama",
+      "featured": "Onshape",
+      "items": ["Onshape", "CorelDraw", "SketchUp", "Blender"]
+    },
+    {
+      "group": "Programming & Electronics — Pendukung",
+      "items": ["Arduino IDE", "Visual Studio Code", "KiCad", "Proteus", "Circuit Wizard"]
+    }
+  ],
+  "experience": [
+    {
+      "year": "2025",
+      "title": "Politeknik Negeri Malang",
+      "desc": "Memulai studi D4 Teknik Elektronika, fokus pada design teknik, robotika, dan IoT.",
+      "badge": ""
+    },
+    {
+      "year": "2025 — Now",
+      "title": "Anggota Komunitas EEPROM",
+      "desc": "Aktif di komunitas robotik, mengerjakan berbagai project robot dan mengikuti ajang perlombangan bersama tim.",
+      "badge": ""
+    }
+  ],
+  "contact": {
+    "email": "meilisaamalia10071@gmail.com",
+    "whatsapp": "xxxxxxxxxxxx"
+  }
+}
