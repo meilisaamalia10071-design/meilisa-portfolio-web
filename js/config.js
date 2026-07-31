@@ -10,7 +10,7 @@
 */
 const SITE_CONFIG = {
   GITHUB_OWNER: "meilisaamalia10071-design",
-  GITHUB_REPO: "meilisaamalia",
+  GITHUB_REPO: "meilisa-portfolio-web",
   GITHUB_BRANCH: "main",
 
   /* --- 4.2 Password gerbang admin (lapisan pertama, sekadar penyaring cepat) --- */
