@@ -2,7 +2,11 @@
   {
     "id": "seed-1",
     "title": "Robot Transporter",
-    "tags": ["ESP32", "PS3 Controller", "BTS7960"],
+    "tags": [
+      "ESP32",
+      "PS3 Controller",
+      "BTS7960"
+    ],
     "desc": "Robot pengangkut barang yang dikendalikan lewat controller PS3, dikembangkan dalam beberapa versi untuk meningkatkan stabilitas dan payload.",
     "image": ""
   }
